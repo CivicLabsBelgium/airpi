@@ -1,0 +1,27 @@
+<html>
+<head>
+    <script type="application/javascript">
+        window.onload = function() {
+            // const v = Math.floor(Math.random() * 100);
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.addEventListener('load', function() {
+                const v = xhttp.responseText;
+                document.getElementById('value').innerText = v;
+
+                const r = Math.round(255 * v / 100);
+                const g = 255 - r;
+                const b = 0;
+
+                document.body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+            });
+            xhttp.open("GET", "http://localhost:3000/v1/sensors/82382/indicators/1", true);
+            xhttp.send();
+        };
+    </script>
+</head>
+<body>
+<h1>What's the value?</h1>
+<p id="value">0</p>
+</body>
+</html>
